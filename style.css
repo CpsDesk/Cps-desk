@@ -102,6 +102,46 @@
 /*---------- Animations----------------- */
 /* Hero Animation */
 
+@keyframes flip-down {
+    0%, 45% {
+        translate: 0 0;
+    }
+
+    50%, 95% {
+        translate: 0 1.1em;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+@keyframes flip-up {
+    0%, 45% {
+        translate: 0 0;
+    }
+
+    50%, 95% {
+        translate: 0 -1.1em;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+.line-a {
+    animation: flip-down 6s ease infinite;
+}
+
+.line-b {
+    animation: flip-up 6s ease infinite;
+}
+
+
+
+
+
 @keyframes slide-nav {
     from {
         opacity: 0;
@@ -113,10 +153,11 @@
         transform: translateY(0);
     }
 }
+
 @keyframes slide-up {
     from {
         opacity: 0;
-        transform: translateY(70px);
+        transform: translateY(var(--y, 70px));
     }
 
     to {
@@ -128,25 +169,33 @@
 @keyframes slide-icons-left {
     from {
         opacity: 0;
-        transform: translateX(-70px);
+        transform: translateX(-70px) rotate(var(--icon-rotate));
     }
 
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) rotate(var(--icon-rotate));
     }
 }
+
 @keyframes slide-icons-right {
     from {
         opacity: 0;
-        transform: translateX(70px);
+        transform: translateX(70px) rotate(var(--icon-rotate));
     }
 
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) rotate(var(--icon-rotate));
     }
 }
+
+.word {
+    display: inline-block;
+    animation: slide-up 0.7s ease both;
+    animation-delay: calc(var(--base, 0.2s) + var(--i) * var(--step, 0.08s));
+}
+
 
 
 /* global */
@@ -317,7 +366,6 @@ html {
     font-weight: var(--fw-semibold);
     line-height: 100%;
     text-align: center;
-    animation: slide-up var(--animation-duration) var(--animation-ease) 0.4s both;
 }
 
 .hero-title-line {
@@ -339,10 +387,12 @@ html {
     line-height: 100%;
     letter-spacing: 0;
     text-align: center;
-    animation: slide-up var(--animation-duration) var(--animation-ease) 0.5s both;
+    --base: 1s;
+    --step: 0.02s;
+    --y: 20px;
 }
 
-.hero-btn{
+.hero-btn {
     animation: slide-up var(--animation-duration) var(--animation-ease) 0.6s both;
 }
 
@@ -384,7 +434,7 @@ html {
 .hero-icon-folder {
     top: -32px;
     left: 60px;
-    transform: rotate(-5.56deg);
+    --icon-rotate: -5.56deg;
     color: var(--teal);
     animation: slide-icons-left var(--animation-duration) var(--animation-ease) 0.2s both;
 }
@@ -393,7 +443,7 @@ html {
 .hero-icon-users {
     top: 153.13px;
     left: 84.53px;
-    transform: rotate(5.98deg);
+    --icon-rotate: 5.98deg;
     color: var(--orange);
     animation: slide-icons-left var(--animation-duration) var(--animation-ease) 0.3s both;
 }
@@ -401,7 +451,7 @@ html {
 .hero-icon-calendar {
     top: 333.71px;
     left: 111.05px;
-    transform: rotate(-11.13deg);
+    --icon-rotate: -11.13deg;
     color: var(--navy);
     animation: slide-icons-left var(--animation-duration) var(--animation-ease) 0.4s both;
 }
@@ -410,7 +460,7 @@ html {
 .hero-icon-check {
     top: -34px;
     left: 1297px;
-    transform: rotate(-11.13deg);
+    --icon-rotate: -11.13deg;
     color: var(--navy);
     animation: slide-icons-right var(--animation-duration) var(--animation-ease) 0.2s both;
 }
@@ -419,7 +469,7 @@ html {
 .hero-icon-document {
     top: 150px;
     left: 1224px;
-    transform: rotate(5.56deg);
+    --icon-rotate: 5.56deg;
     color: var(--orange);
     animation: slide-icons-right var(--animation-duration) var(--animation-ease) 0.3s both;
 }
@@ -427,7 +477,7 @@ html {
 .hero-icon-chat {
     top: 314.75px;
     left: 1297px;
-    transform: rotate(-5.56deg);
+    --icon-rotate: -5.56deg;
     color: var(--teal);
     animation: slide-icons-right var(--animation-duration) var(--animation-ease) 0.4s both;
 }
