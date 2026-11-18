@@ -72,7 +72,7 @@
     /* Font Sizes */
     --fs-xs: 12px;
     --fs-sm: 14px;
-    --fs-md: 16px;
+    --fs-md: 18px;
     --fs-l: 24px;
     --fs-xl: 48px;
     --fs-xxl: clamp(36px, 6vw, 64px);
@@ -93,6 +93,59 @@
 
     /* Motion */
     --transition: 0.2s ease;
+    --animation-duration: 1s;
+    --animation-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --animation-distance: 16px;
+    --animation-stagger: 0.1s;
+}
+
+/*---------- Animations----------------- */
+/* Hero Animation */
+
+@keyframes slide-nav {
+    from {
+        opacity: 0;
+        transform: translateY(-70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-icons-left {
+    from {
+        opacity: 0;
+        transform: translateX(-70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes slide-icons-right {
+    from {
+        opacity: 0;
+        transform: translateX(70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 
@@ -121,7 +174,10 @@ html {
 .home-wrap::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 949px;
     background: url('assets/imgs/hero-grid.png') center top / cover no-repeat;
     -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
     mask-image: linear-gradient(to bottom, #000 70%, transparent);
@@ -173,6 +229,7 @@ html {
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--space-md) var(--space-md) 16px;
+    animation: slide-nav var(--animation-duration) var(--animation-ease) 0.2s both;
 }
 
 .logo {
@@ -251,6 +308,7 @@ html {
     border: 1px solid var(--gray-border);
     border-radius: var(--radius-pill);
     margin: 0 auto;
+    animation: slide-up var(--animation-duration) var(--animation-ease) 0.3s both;
 }
 
 .hero-title {
@@ -259,6 +317,7 @@ html {
     font-weight: var(--fw-semibold);
     line-height: 100%;
     text-align: center;
+    animation: slide-up var(--animation-duration) var(--animation-ease) 0.4s both;
 }
 
 .hero-title-line {
@@ -280,15 +339,19 @@ html {
     line-height: 100%;
     letter-spacing: 0;
     text-align: center;
+    animation: slide-up var(--animation-duration) var(--animation-ease) 0.5s both;
+}
+
+.hero-btn{
+    animation: slide-up var(--animation-duration) var(--animation-ease) 0.6s both;
 }
 
 /* hero icons */
 
 
-.left-hero-icons,
-.right-hero-icons {
+.hero-icons {
     position: absolute;
-    top: 0;
+    top: var(--hero-pt);
     bottom: 0;
     left: 50%;
     width: 1440px;
@@ -323,6 +386,7 @@ html {
     left: 60px;
     transform: rotate(-5.56deg);
     color: var(--teal);
+    animation: slide-icons-left var(--animation-duration) var(--animation-ease) 0.2s both;
 }
 
 
@@ -331,7 +395,7 @@ html {
     left: 84.53px;
     transform: rotate(5.98deg);
     color: var(--orange);
-
+    animation: slide-icons-left var(--animation-duration) var(--animation-ease) 0.3s both;
 }
 
 .hero-icon-calendar {
@@ -339,6 +403,7 @@ html {
     left: 111.05px;
     transform: rotate(-11.13deg);
     color: var(--navy);
+    animation: slide-icons-left var(--animation-duration) var(--animation-ease) 0.4s both;
 }
 
 
@@ -347,6 +412,7 @@ html {
     left: 1297px;
     transform: rotate(-11.13deg);
     color: var(--navy);
+    animation: slide-icons-right var(--animation-duration) var(--animation-ease) 0.2s both;
 }
 
 
@@ -355,23 +421,15 @@ html {
     left: 1224px;
     transform: rotate(5.56deg);
     color: var(--orange);
+    animation: slide-icons-right var(--animation-duration) var(--animation-ease) 0.3s both;
 }
 
-/* width: 63.95005085561333;
-height: 59.30852974066073;
-angle: -5.56 deg;
-opacity: 1;
-top: 461.75px;
-left: 1297px;
-border-radius: 16px;
-border-width: 1px;
- */
-
-.hero-icon-chat{
+.hero-icon-chat {
     top: 314.75px;
-    left:1297px;
+    left: 1297px;
     transform: rotate(-5.56deg);
     color: var(--teal);
+    animation: slide-icons-right var(--animation-duration) var(--animation-ease) 0.4s both;
 }
 
 
@@ -388,4 +446,100 @@ border-width: 1px;
     border-top: 2px solid var(--gray-border);
     border-right: 2px solid var(--gray-border);
     border-left: 2px solid var(--gray-border);
+    animation: slide-up var(--animation-duration) var(--animation-ease) 0.7s both;
+}
+
+/* feature strip */
+
+.feature-strip {
+    width: 100%;
+    padding-inline: var(--space-md);
+}
+
+.feature-strip-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1276px;
+    min-height: 22px;
+    margin: 0 auto;
+    padding: 16px 0 19px;
+    list-style: none;
+}
+
+.feature-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-md);
+    line-height: 100%;
+    color: var(--navy);
+}
+
+.feature-strip-item::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--navy);
+}
+
+/* audience */
+
+.audience {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(100% - 48px, 1200px);
+    min-height: 372px;
+    margin: 0 auto;
+    padding-top: 48px;
+}
+
+.audience-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 541px;
+}
+
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 7px 20px;
+    border: 1px solid var(--navy);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-md);
+    line-height: 100%;
+    color: var(--navy);
+}
+
+.audience-title {
+    font-family: var(--font-heading);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xl);
+    color: var(--navy);
+    line-height: 60px;
+    letter-spacing: 0px;
+}
+
+.audience-text {
+    width: 100%;
+    max-width: 539px;
+    margin-top: 48px;
+    font-family: var(--font-body);
+    font-weight: var(--fw-regular);
+    font-size: 20px;
+    color: var(--gray);
+    line-height: 30px;
+    letter-spacing: 0px;
 }
